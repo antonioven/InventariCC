@@ -17,6 +17,10 @@ body {
 h2,p{
     padding-left: 10px;
 }
+#inicial{
+    margin-left: 10px;
+    width: 500px;
+}
 #formulario{
      display: flex;
      flex-direction: column;
@@ -41,10 +45,26 @@ h2,p{
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
+    margin-top: 10px;
+}
+#anadir{
+    margin-top: 10px;
+    width: 150px;
+}
+
+#inv{
+    width: 300px;
 }
 
 .opc{
     font-weight: bold;
     padding-right: 20px;
     padding-top: 20px;
+}
+
+.form-select{
+    width: 110px;
+}
+.table{
+    margin-top: 10px;
 }

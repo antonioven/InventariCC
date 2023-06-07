@@ -162,8 +162,6 @@ function crear(e) {
       org = document.getElementById("organizacion").value;
       let sel5 = document.getElementById("Status");
       estatus = sel5.options[sel5.selectedIndex].text;
-      alert(estatus);
-      
 
       let monitor = {
         asset,
@@ -185,15 +183,222 @@ function crear(e) {
       }
       break;
     case '3':
-      alert("entraste al caso 3");
+      asset = document.getElementById("asset").value;
+      serial = document.getElementById("serial").value;
+      modelo = document.getElementById("modelo").value;
+      marca = document.getElementById("marca").value;
+      org = document.getElementById("organizacion").value;
+      let sel6 = document.getElementById("Status");
+      estatus = sel6.options[sel6.selectedIndex].text;
+
+      let headset = {
+        asset,
+        serial,
+        modelo,
+        marca,
+        org,
+        estatus
+      }
+
+      if (localStorage.getItem("Headsets") === null) {
+        let headsets = [];
+        headsets.push(headset);
+        localStorage.setItem("Headsets", JSON.stringify(headsets));
+      } else {
+        let headsets = JSON.parse(localStorage.getItem("Headsets"));
+        headsets.push(headset);
+        localStorage.setItem("Headsets", JSON.stringify(headsets));
+      }
       break;
     case '4':
-      alert("entraste al caso 4");
+      cantidad = document.getElementById("cantidad").value;
+
+      let mouse = {
+        cantidad
+      }
+      if (localStorage.getItem("Mouses") === null) {
+        let mouses = [];
+        mouses.push(mouse);
+        localStorage.setItem("Mouses", JSON.stringify(mouses));
+      } else {
+        let mouses = JSON.parse(localStorage.getItem("Mouses"));
+        mouses.push(mouse);
+        localStorage.setItem("Mouses", JSON.stringify(mouses));
+      }
       break;
     case '5':
-      alert("entraste al caso 5");
+      cantidad = document.getElementById("cantidad").value;
+
+      let teclado = {
+        cantidad
+      }
+      if (localStorage.getItem("Teclados") === null) {
+        let teclados = [];
+        teclados.push(teclado);
+        localStorage.setItem("Teclados", JSON.stringify(teclados));
+      } else {
+        let teclados = JSON.parse(localStorage.getItem("Teclados"));
+        teclados.push(teclado);
+        localStorage.setItem("Teclados", JSON.stringify(teclados));
+      }
       break;
   }
 
 
+}
+function leer() {
+  let sele = document.getElementById("inv").value;
+  switch (sele) {
+    case '1':
+      let pcs = JSON.parse(localStorage.getItem("PCs"));
+      document.getElementById("tbody").innerHTML = "";
+      for (let i = 0; i < pcs.length; i++) {
+        let asset = pcs[i].asset;
+        let serial = pcs[i].serial;
+        let modelo = pcs[i].modelo;
+        let marca = pcs[i].marca;
+        let cpu = pcs[i].cpu;
+        let org = pcs[i].org;
+        let tipo = pcs[i].tipo;
+        let estatus = pcs[i].estatus;
+        let so = pcs[i].so;
+        let ram = pcs[i].ram;
+
+        document.getElementById("tbody").innerHTML +=
+          `<tr>
+            <td>${asset}</td>
+            <td>${serial}</td>
+            <td>${modelo}</td>
+            <td>${marca}</td>
+            <td>${cpu}</td>
+            <td>${org}</td>
+            <td>${tipo}</td>
+            <td>${estatus}</td>
+            <td>${so}</td>
+            <td>${ram}</td>
+            <td><button onClick="eliminar('${asset})" class="btn btn-danger">Eliminar</button></td>
+            <td><button onClick="editar('${asset})" class="btn btn-success">Editar</button></td>
+        </tr>
+        `
+      }
+      break;
+    case '2':
+      let monitors = JSON.parse(localStorage.getItem("Monitors"));
+      document.getElementById("datos").innerHTML = "";
+      for (let i = 0; i < monitors.length; i++) {
+        let asset = monitors[i].asset;
+        let serial = monitors[i].serial;
+        let modelo = monitors[i].modelo;
+        let marca = monitors[i].marca;
+        let org = monitors[i].org;
+        let estatus = monitors[i].estatus;
+
+        document.getElementById("datos").innerHTML +=
+          `<thead>
+            <tr>
+              <th scope="col">Asset</th>
+              <th scope="col">Serial</th>
+              <th scope="col">Modelo</th>
+              <th scope="col">Marca</th>
+              <th scope="col">Organizacion</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>${asset}</td>
+              <td>${serial}</td>
+              <td>${modelo}</td>
+              <td>${marca}</td>
+              <td>${org}</td>
+              <td>${estatus}</td>
+              <td><button onClick="eliminar('${asset})" class="btn btn-danger">Eliminar</button></td>
+              <td><button onClick="editar('${asset})" class="btn btn-success">Editar</button></td>
+            </tr>
+          </tbody>
+        `
+      }
+      break;
+    case '3':
+      let headsets = JSON.parse(localStorage.getItem("Headsets"));
+      document.getElementById("datos").innerHTML = "";
+      for (let i = 0; i < headsets.length; i++) {
+        let asset = headsets[i].asset;
+        let serial = headsets[i].serial;
+        let modelo = headsets[i].modelo;
+        let marca = headsets[i].marca;
+        let org = headsets[i].org;
+        let estatus = headsets[i].estatus;
+
+        document.getElementById("datos").innerHTML +=
+          `<thead>
+            <tr>
+              <th scope="col">Asset</th>
+              <th scope="col">Serial</th>
+              <th scope="col">Modelo</th>
+              <th scope="col">Marca</th>
+              <th scope="col">Organizacion</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>${asset}</td>
+              <td>${serial}</td>
+              <td>${modelo}</td>
+              <td>${marca}</td>
+              <td>${org}</td>
+              <td>${estatus}</td>
+              <td><button onClick="eliminar('${asset})" class="btn btn-danger">Eliminar</button></td>
+              <td><button onClick="editar('${asset})" class="btn btn-success">Editar</button></td>
+            </tr>
+          </tbody>
+        `
+      }
+      break;
+    case '4':
+      let mouses = JSON.parse(localStorage.getItem("Mouses"));
+      document.getElementById("datos").innerHTML = "";
+      for (let i = 0; i < mouses.length; i++) {
+        let cantidad = mouses[i].cantidad;
+
+        document.getElementById("datos").innerHTML +=
+          `<thead>
+            <tr>
+              <th scope="col">Cantidad</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>${cantidad}</td>
+              <td><button onClick="eliminar('${asset})" class="btn btn-danger">Eliminar</button></td>
+              <td><button onClick="editar('${asset})" class="btn btn-success">Editar</button></td>
+            </tr>
+          </tbody>
+        `
+      }
+      break;
+    case '5':
+      let teclados = JSON.parse(localStorage.getItem("Teclados"));
+      document.getElementById("datos").innerHTML = "";
+      for (let i = 0; i < teclados.length; i++) {
+        let cantidad = teclados[i].cantidad;
+
+        document.getElementById("datos").innerHTML +=
+          `<thead>
+            <tr>
+              <th scope="col">Cantidad</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>${cantidad}</td>
+              <td><button onClick="eliminar('${asset})" class="btn btn-danger">Eliminar</button></td>
+              <td><button onClick="editar('${asset})" class="btn btn-success">Editar</button></td>
+            </tr>
+          </tbody>
+        `
+      }
+      break;
+  }
 }

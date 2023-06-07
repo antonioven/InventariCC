@@ -70,7 +70,7 @@
       <button type="submit" class="btn btn-primary" id="anadir" disabled>Enviar</button>
     </form>
     <div id="Tdata">
-      <select id="inv" class="form-select" aria-label="Default select example">
+      <select id="inv" class="form-select" aria-label="Default select example" onchange="leer()">
         <option selected>--Seleccionar opcion a desplegar--</option>
         <option value="1">PC</option>
         <option value="2">Monitor</option>
@@ -80,7 +80,7 @@
       </select>
     </div>
 
-    <table class="table">
+    <table class="table" id="datos">
       <thead>
         <tr>
           <th scope="col">Asset</th>
@@ -95,7 +95,19 @@
           <th scope="col">RAM</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody id="tbody">
+        <tr>
+          <td>######</td>
+          <td>######</td>
+          <td>######</td>
+          <td>######</td>
+          <td>######</td>
+          <td>######</td>
+          <td>######</td>
+          <td>######</td>
+          <td>######</td>
+          <td>######</td>
+        </tr>
       </tbody>
     </table>
     </div>

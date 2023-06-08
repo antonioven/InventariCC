@@ -1,3 +1,4 @@
+document.getElementById("body").addEventListener("submit", crear);
 
 function opcion() {
   let sel = document.getElementById("inicial").value;
@@ -44,7 +45,7 @@ function opcion() {
               </select>
             </div>
           </div>
-          <button type="submit" class="btn btn-primary" id="anadir" onClick="crear()">Enviar</button>
+          <button type="submit" class="btn btn-primary" id="anadir">Enviar</button>
             `
       break;
     case '2':
@@ -66,7 +67,7 @@ function opcion() {
               </select>
             </div>
           </div>
-          <button type="submit" class="btn btn-primary" id="anadir" onClick="crear()">Enviar</button>
+          <button type="submit" class="btn btn-primary" id="anadir">Enviar</button>
             `
     case '3':
       document.getElementById("formulario").innerHTML = `
@@ -87,29 +88,9 @@ function opcion() {
               </select>
             </div>
           </div>
-          <button type="submit" class="btn btn-primary" id="anadir" onClick="crear()">Enviar</button>
+          <button type="submit" class="btn btn-primary" id="anadir">Enviar</button>
             `
       break;
-    /*     case '4':
-          document.getElementById("formulario").innerHTML = `
-                <div class="data">
-                <div id="texto">
-                  <input type="text" id="cantidad" class="form-control my-3" placeholder="Cantidad">
-                </div>
-              </div>
-              <button type="submit" class="btn btn-primary" id="anadir" onClick="crear()">Enviar</button>
-                `
-          break;
-        case '5':
-          document.getElementById("formulario").innerHTML = `
-                <div class="data">
-                <div id="texto">
-                  <input type="text" id="cantidad" class="form-control my-3" placeholder="Cantidad">
-                </div>
-              </div>
-              <button type="submit" class="btn btn-primary" id="anadir" onClick="crear()">Enviar</button>
-                `
-          break; */
   }
 }
 function crear(e) {
@@ -131,27 +112,33 @@ function crear(e) {
       so = sel3.options[sel3.selectedIndex].text;
       ram = sel4.options[sel4.selectedIndex].text;
 
-      let pc = {
-        asset,
-        serial,
-        modelo,
-        marca,
-        cpu,
-        org,
-        tipo,
-        estatus,
-        so,
-        ram
-      }
-
-      if (localStorage.getItem("PCs") === null) {
-        let pcs = [];
-        pcs.push(pc);
-        localStorage.setItem("PCs", JSON.stringify(pcs));
+      if (asset === '' || serial === '' || modelo === '' || marca === '' || cpu === '' || org === '' || tipo === '--Tipo--' || estatus === '--Status--' || so === '--Sistema Operativo--' || ram === '--RAM--') {
+        alert("Error. No se pudo añadir el elemento favor de intentarlo de nuevo");
+        e.preventDefault();
       } else {
-        let pcs = JSON.parse(localStorage.getItem("PCs"));
-        pcs.push(pc);
-        localStorage.setItem("PCs", JSON.stringify(pcs));
+        let pc = {
+          asset,
+          serial,
+          modelo,
+          marca,
+          cpu,
+          org,
+          tipo,
+          estatus,
+          so,
+          ram
+        }
+
+        if (localStorage.getItem("PCs") === null) {
+          let pcs = [];
+          pcs.push(pc);
+          localStorage.setItem("PCs", JSON.stringify(pcs));
+        } else {
+          let pcs = JSON.parse(localStorage.getItem("PCs"));
+          pcs.push(pc);
+          localStorage.setItem("PCs", JSON.stringify(pcs));
+        }
+        document.getElementById("formulario").reset();
       }
       break;
     case '2':
@@ -162,24 +149,30 @@ function crear(e) {
       org = document.getElementById("organizacion").value;
       let sel5 = document.getElementById("Status");
       estatus = sel5.options[sel5.selectedIndex].text;
-
-      let monitor = {
-        asset,
-        serial,
-        modelo,
-        marca,
-        org,
-        estatus
-      }
-
-      if (localStorage.getItem("Monitors") === null) {
-        let monitors = [];
-        monitors.push(monitor);
-        localStorage.setItem("Monitors", JSON.stringify(monitors));
+      if (asset === '' || serial === '' || modelo === '' || marca === '' || org === '' || estatus === '--Status--') {
+        alert("Error. No se pudo añadir el elemento favor de intentarlo de nuevo");
+        e.preventDefault();
       } else {
-        let monitors = JSON.parse(localStorage.getItem("Monitors"));
-        monitors.push(monitor);
-        localStorage.setItem("Monitors", JSON.stringify(monitors));
+
+        let monitor = {
+          asset,
+          serial,
+          modelo,
+          marca,
+          org,
+          estatus
+        }
+
+        if (localStorage.getItem("Monitors") === null) {
+          let monitors = [];
+          monitors.push(monitor);
+          localStorage.setItem("Monitors", JSON.stringify(monitors));
+        } else {
+          let monitors = JSON.parse(localStorage.getItem("Monitors"));
+          monitors.push(monitor);
+          localStorage.setItem("Monitors", JSON.stringify(monitors));
+        }
+        document.getElementById("formulario").reset();
       }
       break;
     case '3':
@@ -190,58 +183,32 @@ function crear(e) {
       org = document.getElementById("organizacion").value;
       let sel6 = document.getElementById("Status");
       estatus = sel6.options[sel6.selectedIndex].text;
-
-      let headset = {
-        asset,
-        serial,
-        modelo,
-        marca,
-        org,
-        estatus
-      }
-
-      if (localStorage.getItem("Headsets") === null) {
-        let headsets = [];
-        headsets.push(headset);
-        localStorage.setItem("Headsets", JSON.stringify(headsets));
+      if (asset === '' || serial === '' || modelo === '' || marca === '' || org === '' || estatus === '--Status--') {
+        alert("Error. No se pudo añadir el elemento favor de intentarlo de nuevo");
+        e.preventDefault();
       } else {
-        let headsets = JSON.parse(localStorage.getItem("Headsets"));
-        headsets.push(headset);
-        localStorage.setItem("Headsets", JSON.stringify(headsets));
+
+        let headset = {
+          asset,
+          serial,
+          modelo,
+          marca,
+          org,
+          estatus
+        }
+
+        if (localStorage.getItem("Headsets") === null) {
+          let headsets = [];
+          headsets.push(headset);
+          localStorage.setItem("Headsets", JSON.stringify(headsets));
+        } else {
+          let headsets = JSON.parse(localStorage.getItem("Headsets"));
+          headsets.push(headset);
+          localStorage.setItem("Headsets", JSON.stringify(headsets));
+        }
+        document.getElementById("formulario").reset();
       }
       break;
-    /*     case '4':
-          cantidad = document.getElementById("cantidad").value;
-    
-          let mouse = {
-            cantidad
-          }
-          if (localStorage.getItem("Mouses") === null) {
-            let mouses = [];
-            mouses.push(mouse);
-            localStorage.setItem("Mouses", JSON.stringify(mouses));
-          } else {
-            let mouses = JSON.parse(localStorage.getItem("Mouses"));
-            mouses.push(mouse);
-            localStorage.setItem("Mouses", JSON.stringify(mouses));
-          }
-          break;
-        case '5':
-          cantidad = document.getElementById("cantidad").value;
-    
-          let teclado = {
-            cantidad
-          }
-          if (localStorage.getItem("Teclados") === null) {
-            let teclados = [];
-            teclados.push(teclado);
-            localStorage.setItem("Teclados", JSON.stringify(teclados));
-          } else {
-            let teclados = JSON.parse(localStorage.getItem("Teclados"));
-            teclados.push(teclado);
-            localStorage.setItem("Teclados", JSON.stringify(teclados));
-          }
-          break; */
   }
 
 
@@ -341,50 +308,6 @@ function leer() {
         `
       }
       break;
-    /*     case '4':
-          let mouses = JSON.parse(localStorage.getItem("Mouses"));
-          document.getElementById("datos").innerHTML = "";
-          for (let i = 0; i < mouses.length; i++) {
-            let cantidad = mouses[i].cantidad;
-    
-            document.getElementById("datos").innerHTML +=
-              `<thead>
-                <tr>
-                  <th scope="col">Cantidad</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>${cantidad}</td>
-                  <td><button onClick="eliminar(${asset})" class="btn btn-danger">Eliminar</button></td>
-                  <td><button onClick="editar(${asset})" class="btn btn-success">Editar</button></td>
-                </tr>
-              </tbody>
-            `
-          }
-          break;
-        case '5':
-          let teclados = JSON.parse(localStorage.getItem("Teclados"));
-          document.getElementById("datos").innerHTML = "";
-          for (let i = 0; i < teclados.length; i++) {
-            let cantidad = teclados[i].cantidad;
-    
-            document.getElementById("datos").innerHTML +=
-              `<thead>
-                <tr>
-                  <th scope="col">Cantidad</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>${cantidad}</td>
-                  <td><button onClick="eliminar(${asset})" class="btn btn-danger">Eliminar</button></td>
-                  <td><button onClick="editar(${asset})" class="btn btn-success">Editar</button></td>
-                </tr>
-              </tbody>
-            `
-          }
-          break; */
   }
 }
 function editar(asset) {
@@ -502,10 +425,6 @@ function editar(asset) {
         }
       }
       break;
-    /*     case '4':
-          break;
-        case '5':
-          break; */
   }
 }
 function actualizar(i, selec) {
@@ -518,12 +437,20 @@ function actualizar(i, selec) {
       pcs[i].marca = document.getElementById("newmarca").value;
       pcs[i].cpu = document.getElementById("newcpu").value;
       pcs[i].org = document.getElementById("neworganizacion").value;
-      pcs[i].tipo = document.getElementById("newTipo").value;
-      pcs[i].estatus = document.getElementById("newStatus").value;
-      pcs[i].so = document.getElementById("newSO").value;
-      pcs[i].ram = document.getElementById("newRAM").value;
-      localStorage.setItem("PCs", JSON.stringify(pcs));
-      vistaPrincipal();
+      let upd = document.getElementById("newTipo");
+      let upd1 = document.getElementById("newStatus");
+      let upd2 = document.getElementById("newSO");
+      let upd3 = document.getElementById("newRAM");
+      pcs[i].tipo = upd.options[upd.selectedIndex].text;
+      pcs[i].estatus = upd1.options[upd1.selectedIndex].text;
+      pcs[i].so = upd2.options[upd2.selectedIndex].text;
+      pcs[i].ram = upd3.options[upd3.selectedIndex].text;
+      if (pcs[i].asset === '' || pcs[i].serial === '' || pcs[i].modelo === '' || pcs[i].marca === '' || pcs[i].cpu === '' || pcs[i].org === '' || pcs[i].tipo === '--Tipo--' || pcs[i].estatus === '--Status--' || pcs[i].so === '--Sistema Operativo--' || pcs[i].ram === '--RAM--') {
+        alert("Error. No se pudo actualizar el elemento ya que algunos campos estaban vacios, favor de intentarlo de nuevo");
+      } else {
+        localStorage.setItem("PCs", JSON.stringify(pcs));
+        vistaPrincipal();
+      }
       break;
     case '2':
       let monitors = JSON.parse(localStorage.getItem("Monitors"));
@@ -532,9 +459,14 @@ function actualizar(i, selec) {
       monitors[i].modelo = document.getElementById("newmodelo").value;
       monitors[i].marca = document.getElementById("newmarca").value;
       monitors[i].org = document.getElementById("neworganizacion").value;
-      monitors[i].estatus = document.getElementById("newStatus").value;
-      localStorage.setItem("Monitors", JSON.stringify(monitors));
-      vistaPrincipal();
+      let upd4 = document.getElementById("newStatus");
+      monitors[i].estatus = upd4.options[upd4.selectedIndex].text;
+      if (monitors[i].asset === '' || monitors[i].serial === '' || monitors[i].modelo === '' || monitors[i].marca === '' || monitors[i].org === '' || monitors[i].estatus === '--Status--') {
+        alert("Error. No se pudo actualizar el elemento ya que algunos campos estaban vacios, favor de intentarlo de nuevo");
+      } else {
+        localStorage.setItem("Monitors", JSON.stringify(monitors));
+        vistaPrincipal();
+      }
       break;
     case '3':
       let headsets = JSON.parse(localStorage.getItem("Headsets"));
@@ -543,9 +475,14 @@ function actualizar(i, selec) {
       headsets[i].modelo = document.getElementById("newmodelo").value;
       headsets[i].marca = document.getElementById("newmarca").value;
       headsets[i].org = document.getElementById("neworganizacion").value;
-      headsets[i].estatus = document.getElementById("newStatus").value;
-      localStorage.setItem("Headsets", JSON.stringify(headsets));
-      vistaPrincipal();
+      let upd5 = document.getElementById("newStatus");
+      headsets[i].estatus = upd5.options[upd5.selectedIndex].text;
+      if (headsets[i].asset === '' || headsets[i].serial === '' || headsets[i].modelo === '' || headsets[i].marca === '' || headsets[i].org === '' || headsets[i].estatus === '--Status--') {
+        alert("Error. No se pudo actualizar el elemento ya que algunos campos estaban vacios, favor de intentarlo de nuevo");
+      } else {
+        localStorage.setItem("Headsets", JSON.stringify(headsets));
+        vistaPrincipal();
+      }
       break;
   }
 }
